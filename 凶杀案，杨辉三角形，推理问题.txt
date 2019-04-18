@@ -1,0 +1,114 @@
+1.  
+5位运动员参加了10米台跳水比赛，有人让他们预测比赛结果
+A选手说：B第二，我第三；
+B选手说：我第二，E第四；
+C选手说：我第一，D第二；
+D选手说：C最后，我第三；
+E选手说：我第四，A第一；
+比赛结束后，每位选手都说对了一半，请编程确定比赛的名次。
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+	int a, b, c, d, e;
+	for (a = 1; a <= 5; a++)
+	for (b = 1; b <= 5; b++)
+	for (c = 1; c <= 5; c++)
+	for (d = 1; d <= 5; d++)
+	for (e = 1; e <= 5; e++)
+	{
+		if (a*b*c*d*e == 120)
+		{
+	      if ((b == 2) +( a == 3) == 1 && (b == 2) + (e == 4) == 1 && (c == 1) + (d == 2) == 1 && 
+			  (c == 5) +( d == 3 )== 1 && (e == 4 )+( a == 1) == 1)
+		printf("%d%d%d%d%d", a, b, c, d, e);
+		}
+	}
+	system("pause");
+	return 0;
+}
+2.  
+日本某地发生了一件谋杀案，警察通过排查确定杀人凶手必为4个嫌疑犯的一个。以下为4个嫌疑犯的供词。
+A说：不是我。
+B说：是C。
+C说：是D。
+D说：C在胡说
+已知3个人说了真话，1个人说的是假话。
+现在请根据这些信息，写一个程序来确定到底谁是凶手。
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+	int a=0, b=0, c=0, d=0;//设定1为凶手
+	for (a = 0; a <= 1;a++)
+	for (b = 0; b <= 1; b++)
+	for (c = 0; c <= 1; c++)
+	for (d = 0; d <= 1; d++)
+	{
+		if (a + b + c + d == 1)
+		{
+			if (!(a == 0) + !(c == 1)+!(d==1)+!(d!=1)==1){
+				/*printf("%d%d%d%d", a, b, c, d);*/
+				if (a == 1)
+					printf("a");
+				if (b == 1)
+					printf("b");
+				if (c == 1)
+					printf("c");
+				if (d == 1)
+					printf("d");
+			}
+		}
+	}
+	printf("是凶手");
+	system("pause");
+	return 0;
+}
+3.在屏幕上打印杨辉三角。
+#define _CRT_SECURE_NO_WARNINGS 1
+#define ROW 10
+#define COL 10
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdio.h>
+int print_blank(int count)
+{
+	for (int i = count; i > 0; i--)
+	{
+		printf("  ");
+	}
+}
+int main()//利用数组知识解决杨辉三角形
+{
+	int row;
+	int col;
+	int a[ROW][COL];//首先建立一个数组
+	int count = ROW;
+	for (row = 0; row < ROW; row++)
+	{
+		a[row][0] = 1;//第一列都为1
+		for (col = 0; col <= row; col++)
+		{
+			if (col == 0)  //判断是否为第一列，如果是设置为1
+				a[row][col] = a[0][0];
+			else if (row >= 1 && col >= 1 && row != col)  //判断是否为中间列
+				a[row][col] = a[row - 1][col] + a[row - 1][col - 1];
+			else  if (col == row) //判断是否为最后列
+				a[row][col] = a[row - 1][col - 1];
+		}
+	}
+	for (row = 0; row < ROW; row++, count--)   //输出杨辉三角
+	{
+		print_blank(count);//空格
+		for (col = 0; col <= row; col++)
+		{
+			printf("%-5d", a[row][col]);
+		}
+		printf("\n");
+	}
+	system("pause");
+}
