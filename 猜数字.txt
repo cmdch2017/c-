@@ -3,24 +3,25 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-void main(void)
+void main()
 {
-	int tempt,num;
+	int randomNumber, enterNumber;
 	srand((unsigned)time(NULL)); //初始化随机数（范围是2的15次方即上限32767）
-	tempt = rand() % 100 + 1;
-	scanf("%d", &num);
-	while (num!=tempt)
-	{ if (num > tempt)
+	randomNumber = rand() % 100 + 1;
+	scanf("%d", &enterNumber);
+	while (enterNumber != randomNumber)
 	{
-		printf(" 大了\n");
-		scanf("%d", &num);
+		if (enterNumber > randomNumber)
+		{
+			printf(" 大了\n");
+		}
+		if (enterNumber < randomNumber)
+		{
+			printf(" 小了\n");
+		}
+		scanf("%d", &enterNumber);
 	}
-	if (num < tempt)
-	{
-		printf(" 小了\n");
-		scanf("%d", &num);
-	} }
-	if (num == tempt)
+	if (enterNumber == randomNumber)
 		printf(" success");//1-100的随机数
 	system("pause");
 
