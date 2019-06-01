@@ -1,0 +1,9 @@
+int main(){
+	char acHello[] = "hello\0world";
+	char acNew[15] = { 0 };
+	strcpy(acNew, acHello);
+	printf("%d %d %d %d", strlen(acNew),sizeof(acNew),
+	 strlen(acHello), sizeof(acHello));//5 15 5 12
+	//屏幕大小问题，运行结果如上所示
+	return 0;
+}
